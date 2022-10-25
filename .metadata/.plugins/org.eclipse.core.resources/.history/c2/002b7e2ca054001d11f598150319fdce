@@ -1,0 +1,21 @@
+package com.enexse.test;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.enexse.test.repository.agentRepository;
+
+@SpringBootTest
+class DemoApplicationTests {
+
+	@Autowired
+	private agentRepository agentRep  ;
+	@Test
+	public void testCreateProduit() {
+	Produit prod = new Produit("PC asus",2500.500,new Date());
+	Produit prod1 = new Produit("iphone",2500.500,new Date());
+	produitRepository.save(prod);
+	produitRepository.save(prod1);
+	}
+}

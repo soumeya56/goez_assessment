@@ -1,0 +1,249 @@
+package com.enexse.test.controllers;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.enexse.test.models.agents;
+import com.enexse.test.service.agentService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
+@RestController
+@RequestMapping("/api/v1/")
+@CrossOrigin(origins="*")
+@Tag(name = "agents", description = "CRUD")
+public class agentRest {
+	
+	@Autowired
+	private agentService agentService ;
+	
+	
+	@GetMapping("/agents")
+	@Operation(
+	       
+	        description = "Find all agents.",
+	        tags = { "Agents" },
+	        responses = {
+	            @ApiResponse(
+		                description = "Success",
+		                responseCode = "200",
+		                content = @Content(mediaType = "application/json", schema = @Schema(implementation = agents.class))
+		                ),
+		    	                
+		    	    
+		            
+	            @ApiResponse(description = "Not found", responseCode = "404", content = @Content),
+	            @ApiResponse(description = "Internal error", responseCode = "500", content = @Content)
+	        }
+	    )
+	public List<agents> findAll() {
+		      return    agentService.findAll();
+    }
+	
+	
+	@PostMapping(value="/agent", produces=MediaType.APPLICATION_JSON_VALUE)
+	
+	@Operation(
+	       
+	        description = "Create a new agent.",
+	        tags = { "Agents" },
+	        responses = {
+	            @ApiResponse(
+	                description = "Success",
+	                responseCode = "200",
+	                content = @Content(mediaType = "application/json", schema = @Schema(implementation = agents.class))
+	            ),
+	            @ApiResponse(description = "Not found", responseCode = "404", content = @Content),
+	            @ApiResponse(description = "Internal error", responseCode = "500", content = @Content)
+	        }
+	    )
+	public agents createAgent(@RequestBody agents newAgent) {
+		System.out.println(newAgent.getName());
+		        return agentService.addAgent(newAgent);
+		    }
+	
+	
+	
+	
+	@PutMapping("/{name}")
+	@Operation(
+	       
+	        description = "Update an existing agent.",
+	        tags = { "Post" },
+	        responses = {
+	            @ApiResponse(
+	                description = "Success",
+	                responseCode = "200",
+	                content = @Content(mediaType = "application/json", schema = @Schema(implementation =agents.class))
+	            ),
+	            @ApiResponse(description = "Not found", responseCode = "404", content = @Content),
+	            @ApiResponse(description = "Internal error", responseCode = "500", content = @Content)
+	        }
+	    )
+	public agents updatedAgent(@RequestBody agents agent, @PathVariable @Parameter(description = "The name of the agent to update.") String name) {
+		        return  agentService.update(name, agent);
+		    }
+	
+	
+	
+	
+	@DeleteMapping("/{id}")
+	@Operation(
+	       
+	        description = "Delete an existing agent.",
+	        tags = { "Poste" },
+	        responses = {
+	            @ApiResponse(
+	                description = "Success",
+	                responseCode = "200",
+	                content = @Content(mediaType = "application/json", schema = @Schema(implementation = agents.class))
+	            ),
+	            @ApiResponse(description = "Not found", responseCode = "404", content = @Content),
+	            @ApiResponse(description = "Internal error", responseCode = "500", content = @Content)
+	        }
+	    )
+	public void deleteAgent(@PathVariable @Parameter(description = "The id of the agent to delete.") int id) {
+		 agentService.deleteById(id);
+      }
+	
+	
+	
+	
+	@GetMapping("/total")
+	@Operation(
+	     
+	        description = "Get the total  Number Of All agentst.",
+	        tags = { "Agents" },
+	        responses = {
+	            @ApiResponse(
+		                description = "Success",
+		                responseCode = "200",
+		                content = @Content(mediaType = "application/json", schema = @Schema(implementation =agents.class))
+		                ),
+		    	                
+		    	    
+		            
+	            @ApiResponse(description = "Not found", responseCode = "404", content = @Content),
+	            @ApiResponse(description = "Internal error", responseCode = "500", content = @Content)
+	        }
+	    )
+	public int totalAgents() {
+		      return   agentService.allAgents();
+    }
+	
+	
+	@GetMapping("/totalActive")
+	@Operation(
+	     
+	        description = "Get the total  Number Of All active agents.",
+	        tags = { "Agents" },
+	        responses = {
+	            @ApiResponse(
+		                description = "Success",
+		                responseCode = "200",
+		                content = @Content(mediaType = "application/json", schema = @Schema(implementation =agents.class))
+		                ),
+		    	                
+		    	    
+		            
+	            @ApiResponse(description = "Not found", responseCode = "404", content = @Content),
+	            @ApiResponse(description = "Internal error", responseCode = "500", content = @Content)
+	        }
+	    )
+	public int nbreActiveAgents() {
+		      return   agentService.activeAgents();
+    }
+	
+	
+	
+	@GetMapping("/totalDisconnect")
+	@Operation(
+	     
+	        description = "Get the total Number Of All Disconnected agents.",
+	        tags = { "Agents" },
+	        responses = {
+	            @ApiResponse(
+		                description = "Success",
+		                responseCode = "200",
+		                content = @Content(mediaType = "application/json", schema = @Schema(implementation =agents.class))
+		                ),
+		    	                
+		    	    
+		            
+	            @ApiResponse(description = "Not found", responseCode = "404", content = @Content),
+	            @ApiResponse(description = "Internal error", responseCode = "500", content = @Content)
+	        }
+	    )
+	public int DisconnectedAgents() {
+		      return   agentService.DisconnectedAgents();
+    }
+	
+	
+	
+	
+	@GetMapping("/neverConnected")
+	@Operation(
+	     
+	        description = "Get the total Number Of All  Never Disconnected agents.",
+	        tags = { "Agents" },
+	        responses = {
+	            @ApiResponse(
+		                description = "Success",
+		                responseCode = "200",
+		                content = @Content(mediaType = "application/json", schema = @Schema(implementation =agents.class))
+		                ),
+		    	                
+		    	    
+		            
+	            @ApiResponse(description = "Not found", responseCode = "404", content = @Content),
+	            @ApiResponse(description = "Internal error", responseCode = "500", content = @Content)
+	        }
+	    )
+	public int NeverConnectedAgents() {
+		      return   agentService.neverConnectedAgents();
+    }
+	
+	
+	@GetMapping("/totalPending")
+	@Operation(
+	     
+	        description = "Get the total Number Of All  pending agents.",
+	        tags = { "Agents" },
+	        responses = {
+	            @ApiResponse(
+		                description = "Success",
+		                responseCode = "200",
+		                content = @Content(mediaType = "application/json", schema = @Schema(implementation =agents.class))
+		                ),
+		    	                
+		    	    
+		            
+	            @ApiResponse(description = "Not found", responseCode = "404", content = @Content),
+	            @ApiResponse(description = "Internal error", responseCode = "500", content = @Content)
+	        }
+	    )
+	public int pendingAgents() {
+		      return   agentService.pendingAgents();
+    }
+	
+}

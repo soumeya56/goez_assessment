@@ -1,0 +1,68 @@
+package com.enexse.test.models;
+
+import java.io.Serializable;
+import java.sql.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter 
+@Setter
+@Data
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+ @Table(name = "agents")
+public class agents implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id ;
+    private String os ;
+    private Date lastKeepAlive ;
+    private Date dateAdd;
+    private String ip ;
+    private String version ;
+    private String name ;
+    
+    public enum Statut {
+    	active,
+    	disconnected,
+    	pending,
+    	never_connected,
+        
+    }
+
+    @Enumerated(EnumType.STRING)
+    private Statut status   ;
+
+	public agents(String os, Date lastKeepAlive, Date dateAdd, String ip, String version, String name,
+			Statut status) {
+		super();
+	
+		this.os = os;
+		this.lastKeepAlive = lastKeepAlive;
+		this.dateAdd = dateAdd;
+		this.ip = ip;
+		this.version = version;
+		this.name = name;
+		this.status = status;
+	}
+    
+    
+   
+    
+
+}

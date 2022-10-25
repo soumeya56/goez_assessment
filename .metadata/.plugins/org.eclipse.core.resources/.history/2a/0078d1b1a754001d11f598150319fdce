@@ -1,0 +1,70 @@
+package com.enexse.test.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.ResourceAccessException;
+import org.springframework.web.server.ResponseStatusException;
+
+import com.enexse.test.models.agents;
+import com.enexse.test.repository.agentRepository;
+
+@Service
+public class agentService {
+	
+	
+	@Autowired
+	agentRepository agentRep ;
+	
+	
+	
+	    //get all agents
+		public List<agents> findAll() {		
+			List <agents> agents=agentRep.findAll();
+			return agents ;
+		}
+		
+		
+		//post an agent
+		public agents addAgent(agents agent) {
+
+	         agents newAgent =agentRep.save(agent);
+	         return newAgent ;
+				
+			}
+		
+		//update an agent
+		public agents update(int id, agents updatedAgent) {
+			
+			
+			agents agent=agentRep.findById((long) id).orElseThrow(()-> new ResourceAccessException("not found"));
+					
+		    agent.setName(updatedAgent.getName());
+		    agent.setDateAdd(updatedAgent.getDateAdd());
+		    agent.setIp(updatedAgent.getIp());
+		    agent.setLastKeepAlive(updatedAgent.getLastKeepAlive());
+		    agent.setOs(updatedAgent.getOs());
+		    agent.setVersion(updatedAgent.getVersion());
+					
+		    agents updatedAgents= agentRep.save(agent);
+
+		     return updatedAgent;  
+
+		}
+		
+	  //delete an agent
+		public void deleteById(int id)  {
+			
+			
+			agents agent =
+					agentRep
+		            .findById((long)id)
+		            .orElseThrow(() -> new ResponseStatusException(org.springframework.http.HttpStatus.NOT_FOUND," Not Found"));
+			        
+			       agentRep.delete(agent);
+		}
+		
+			
+
+}

@@ -1,0 +1,5 @@
+package com.enexse.test.exceptions;
+
+public class ResourceNotFindException {
+
+}

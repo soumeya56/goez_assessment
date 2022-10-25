@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="DemoApplicationTests" project="TestEnexse" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="com.enexse.test.DemoApplicationTests" time="8.144" displayname="DemoApplicationTests" uniqueid="[engine:junit-jupiter]/[class:com.enexse.test.DemoApplicationTests]">
+    <testcase name="testCreateAgent" classname="com.enexse.test.DemoApplicationTests" time="7.312" displayname="testCreateAgent()" uniqueid="[engine:junit-jupiter]/[class:com.enexse.test.DemoApplicationTests]/[method:testCreateAgent()]"/>
+    <testcase name="testDeleteAgentt" classname="com.enexse.test.DemoApplicationTests" time="0.828" displayname="testDeleteAgentt()" uniqueid="[engine:junit-jupiter]/[class:com.enexse.test.DemoApplicationTests]/[method:testDeleteAgentt()]"/>
+  </testsuite>
+</testrun>

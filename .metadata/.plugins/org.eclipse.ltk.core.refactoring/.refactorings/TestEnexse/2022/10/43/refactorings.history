@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.enexse.test.config.OpenApiCinfig&apos; to &apos;OpenApiConfig&apos;&#x0D;&#x0A;- Original project: &apos;TestEnexse&apos;&#x0D;&#x0A;- Original element: &apos;com.enexse.test.config.OpenApiCinfig&apos;&#x0D;&#x0A;- Renamed element: &apos;com.enexse.test.config.OpenApiConfig&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;OpenApiCinfig&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.enexse.test.config{OpenApiCinfig.java[OpenApiCinfig" matchStrategy="1" name="OpenApiConfig" qualified="false" references="true" similarDeclarations="false" stamp="1666725986713" textual="false" version="1.0"/>
+</session>
