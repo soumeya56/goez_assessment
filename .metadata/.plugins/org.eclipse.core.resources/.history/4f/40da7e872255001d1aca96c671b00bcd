@@ -1,0 +1,36 @@
+package com.enexse.test;
+
+import java.util.Date;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.enexse.test.models.agents;
+import com.enexse.test.models.agents.Statut;
+import com.enexse.test.repository.agentRepository;
+
+@SpringBootTest
+class DemoApplicationTests {
+
+	@Autowired
+	private agentRepository agentRep  ;
+	@Test
+	public void testCreateAgent() {
+
+	agents agent = new agents("Ubuntu",new Date(),new Date(),"127.0.0.1","cyr-customer-ossec.local",
+			"Wazuh v4.3.8",Statut.active);
+	agents agent2 = new agents("Windows10",new Date(),new Date(),"127.0.0.1","cyr-customer-ossec.local",
+			"Wazuh v4.3.8",Statut.never_connected);
+	
+	agentRep.save(agent2);
+	
+
+	}
+	
+	 @Test
+	 public void testDeleteAgentt()
+	 {
+		 agentRep.deleteById(10L);;
+	 }
+}

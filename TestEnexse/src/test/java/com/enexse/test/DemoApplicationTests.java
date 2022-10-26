@@ -21,7 +21,7 @@ class DemoApplicationTests {
 	agents agent = new agents("Ubuntu",new Date(),new Date(),"127.0.0.1","cyr-customer-ossec.local",
 			"Wazuh v4.3.8",Statut.active);
 	agents agent2 = new agents("Windows10",new Date(),new Date(),"127.0.0.1","cyr-customer-ossec.local",
-			"Wazuh v4.3.8",Statut.never_connected);
+			"Wazuh v4.3.8",Statut.disconnected);
 	
 	agentRep.save(agent2);
 	

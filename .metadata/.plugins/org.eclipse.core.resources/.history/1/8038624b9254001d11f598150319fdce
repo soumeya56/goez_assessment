@@ -1,5 +1,0 @@
-package com.enexse.test.repository;
-
-public interface agentRepository {
-
-}

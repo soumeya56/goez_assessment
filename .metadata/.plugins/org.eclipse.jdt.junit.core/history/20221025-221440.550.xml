@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="DemoApplicationTests" project="TestEnexse" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="com.enexse.test.DemoApplicationTests" time="1.586" displayname="DemoApplicationTests" uniqueid="[engine:junit-jupiter]/[class:com.enexse.test.DemoApplicationTests]">
-    <testcase name="testCreateAgent" classname="com.enexse.test.DemoApplicationTests" time="1.586" displayname="testCreateAgent()" uniqueid="[engine:junit-jupiter]/[class:com.enexse.test.DemoApplicationTests]/[method:testCreateAgent()]"/>
-  </testsuite>
-</testrun>
