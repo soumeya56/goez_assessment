@@ -35,8 +35,8 @@ public class TripService {
     }
 
 
-    public List<Object[]> getTripsSummary() {
-        return tripRepository.countTripsByTraveler();
+    public Long getTripsSummary(Long travelerId) {
+        return tripRepository.countTripsByTraveler(travelerId);
     }
 
 

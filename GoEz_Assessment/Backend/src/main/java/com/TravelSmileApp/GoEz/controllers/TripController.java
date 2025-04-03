@@ -57,10 +57,10 @@ public class TripController {
     }
 
 
-    @GetMapping("/trips-summary")
+    @GetMapping("/trips-summary/{travelerId}")
     @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-    public ResponseEntity<List<Object[]>> getTripsSummary() {
-        List<Object[]> tripsSummary = tripService.getTripsSummary();
+    public ResponseEntity<Long> getTripsSummary(@PathVariable Long travelerId) {
+        Long tripsSummary = tripService.getTripsSummary(travelerId);
         return ResponseEntity.ok(tripsSummary);
     }
 }

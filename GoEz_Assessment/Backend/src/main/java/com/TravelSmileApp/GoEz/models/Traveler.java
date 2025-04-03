@@ -1,14 +1,17 @@
 package com.TravelSmileApp.GoEz.models;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "travelers")
-public class Traveler extends User{
-
-
+@NoArgsConstructor
+@AllArgsConstructor
+public class Traveler extends User {
 
     @Column(nullable = false)
     private String name;
@@ -16,9 +19,9 @@ public class Traveler extends User{
     @ManyToMany(mappedBy = "travelers")
     private Set<Trip> trips = new HashSet<>();
 
-    public Traveler(String name, String email, Set<Trip> trips) {
+    public Traveler(String name, String email, String password, Set<Role> roles) {
+        super(email, password, roles.toString());
         this.name = name;
-        this.trips = trips;
     }
 
     public String getName() {
@@ -28,7 +31,6 @@ public class Traveler extends User{
     public void setName(String name) {
         this.name = name;
     }
-
 
     public Set<Trip> getTrips() {
         return trips;

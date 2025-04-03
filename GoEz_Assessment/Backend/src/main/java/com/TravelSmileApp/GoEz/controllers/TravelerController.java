@@ -1,5 +1,6 @@
 package com.TravelSmileApp.GoEz.controllers;
 
+import com.TravelSmileApp.GoEz.DTO.TravelerRequest;
 import com.TravelSmileApp.GoEz.models.Traveler;
 import com.TravelSmileApp.GoEz.service.TravelerService;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/travelers")
@@ -32,9 +34,12 @@ public class TravelerController {
 
     @PostMapping("/addTraveler")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Traveler> createTraveler(@RequestBody Traveler traveler) {
-        return ResponseEntity.ok(travelerService.createTraveler(traveler));
+    public ResponseEntity<Traveler> createTraveler(@RequestBody TravelerRequest request) {
+        Traveler traveler = travelerService.createTraveler(request.getUserId(), request.getName(), request.getTripIds());
+        return ResponseEntity.ok(traveler);
     }
+
+
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
