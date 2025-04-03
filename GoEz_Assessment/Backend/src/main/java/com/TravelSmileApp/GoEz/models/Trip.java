@@ -29,6 +29,10 @@ public class Trip {
     )
     private Set<Traveler> travelers = new HashSet<>();
 
+    public Trip() {
+
+    }
+
     public String getDestination() {
         return destination;
     }

@@ -28,8 +28,12 @@ public class TripService {
     }
 
     public Trip createTrip(Trip trip) {
+        if (tripRepository.existsByDestination(trip.getDestination())) {
+            throw new IllegalArgumentException("this destination already exists !");
+        }
         return tripRepository.save(trip);
     }
+
 
     public void deleteTrip(Long id) {
         tripRepository.deleteById(id);
