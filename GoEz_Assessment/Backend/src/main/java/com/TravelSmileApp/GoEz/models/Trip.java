@@ -15,10 +15,10 @@ public class Trip {
     @Column(nullable = false)
     private String destination;
 
-    @Column(nullable = false)
+
     private String departureDate;
 
-    @Column(nullable = false)
+
     private String returnDate;
 
     @ManyToMany(fetch = FetchType.LAZY)

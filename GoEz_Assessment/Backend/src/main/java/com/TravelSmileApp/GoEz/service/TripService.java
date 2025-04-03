@@ -35,6 +35,11 @@ public class TripService {
     }
 
 
+    public List<Object[]> getTripsSummary() {
+        return tripRepository.countTripsByTraveler();
+    }
+
+
     public void deleteTrip(Long id) {
         tripRepository.deleteById(id);
     }

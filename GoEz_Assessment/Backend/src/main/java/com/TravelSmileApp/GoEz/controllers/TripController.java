@@ -30,7 +30,7 @@ public class TripController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("/createTrip")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Trip> createTrip(@RequestBody Trip trip) {
         return ResponseEntity.ok(tripService.createTrip(trip));
@@ -54,5 +54,13 @@ public class TripController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Trip> removeTravelerFromTrip(@PathVariable Long tripId, @PathVariable Long travelerId) {
         return ResponseEntity.ok(tripService.removeTravelerFromTrip(tripId, travelerId));
+    }
+
+
+    @GetMapping("/trips-summary")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    public ResponseEntity<List<Object[]>> getTripsSummary() {
+        List<Object[]> tripsSummary = tripService.getTripsSummary();
+        return ResponseEntity.ok(tripsSummary);
     }
 }
